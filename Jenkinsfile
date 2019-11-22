@@ -26,9 +26,9 @@ node {
     withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
         stage('Deploye Code') {
             if (isUnix()) {
-                rc = sh returnStatus: true, script: "${toolbelt} force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
+                rc = sh returnStatus: true, script: "${toolbelt} force:auth:jwt:grant --clientid 3MVG9d8..z.hDcPLICRMy5HexmD8MXtrJ_Y3YpYr872PY8YkHlfUUmQOof6yFB1mLJXybI7Ds42FE.FNuPCw0 --jwtkeyfile C:\Users\701272\server.key --username rahul.pathade@cognizant.com --instanceurl https://login.salesforce.com --setdefaultdevhubusername
             }else{
-                 rc = bat returnStatus: true, script: "\"${toolbelt}\" force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile \"${jwt_key_file}\" --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
+                 rc = bat returnStatus: true, script: "\"${toolbelt}\" force:auth:jwt:grant --clientid 3MVG9d8..z.hDcPLICRMy5HexmD8MXtrJ_Y3YpYr872PY8YkHlfUUmQOof6yFB1mLJXybI7Ds42FE.FNuPCw0 --jwtkeyfile C:\Users\701272\server.key --username rahul.pathade@cognizant.com --instanceurl https://login.salesforce.com --setdefaultdevhubusername
             }
             if (rc != 0) { error 'hub org authorization failed' }
 
