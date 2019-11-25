@@ -64,3 +64,4 @@ node {
             junit keepLongStdio: true, testResults: 'tests/**/*-junit.xml'
         }
     }
+}
