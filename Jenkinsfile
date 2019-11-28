@@ -37,10 +37,10 @@ node {
 			
 			// need to pull out assigned username
 			if (isUnix()) {
-				rmsg = sh returnStdout: true, script: "${toolbelt} force:mdapi:deploy -d ${METATDATA_API_DIR}/" -u ${HUB_ORG}"
+				rmsg = sh returnStdout: true, script: "${toolbelt} force:mdapi:deploy -d ${METATDATA_API_DIR}/ -u ${HUB_ORG}"
 				-d ${METATDATA_API_DIR}/"
 			}else{
-			   rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:mdapi:deploy -d ${METATDATA_API_DIR}/" -u ${HUB_ORG}"
+			   rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:mdapi:deploy -d ${METATDATA_API_DIR}/ -u ${HUB_ORG}"
 			}
 			  
             printf rmsg
