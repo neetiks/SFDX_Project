@@ -9,11 +9,11 @@ node {
     def RUN_ARTIFACT_DIR="tests/${BUILD_NUMBER}"
     def SFDC_USERNAME
 
-    def HUB_ORG=env.HUB_ORG_DH
-    def SFDC_HOST = env.SFDC_HOST_DH
+    def HUB_ORG="rahul.pathade@cognizant.com"
+    def SFDC_HOST = "https://login.salesforce.com"
     def JWT_KEY_CRED_ID = "3dfa2314-cd02-4aed-a220-009abed23c46"
-    def CONNECTED_APP_CONSUMER_KEY=env.CONNECTED_APP_CONSUMER_KEY_DH 
-
+    def CONNECTED_APP_CONSUMER_KEY="3MVG9d8..z.hDcPLICRMy5HexmD8MXtrJ_Y3YpYr872PY8YkHlfUUmQOof6yFB1mLJXybI7Ds42FE.FNuPCw0"
+    
    // def toolbelt = tool 'toolbelt'
 
     stage('checkout source') {
@@ -23,8 +23,9 @@ node {
 
     withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
         stage('Create Scratch Org') {
-
+            echo "before executing sfdx cmd"
             rc = sh returnStdout: true, script: "sfdx force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile '${jwt_key_file}' --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
+            echo "after executing sfdx cmd"
             if (rc != 0) { error 'hub org authorization failed' }
 
             // need to pull out assigned username
