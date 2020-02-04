@@ -28,7 +28,7 @@ node {
             if (rc != 0) { error 'hub org authorization failed' }
 
             // need to pull out assigned username
-                     rmsg = bat returnStdout: true, script: "${toolbelt} sfdx force:org:create --definitionfile ${CONFIG}"
+                     rmsg = bat returnStdout: true, script: "${toolbelt} sfdx force:org:create --definitionfile ${CONFIG} --setdefaultusername 'myorg' "
             printf rmsg
             def jsonSlurper = new JsonSlurperClassic()
             def robj = jsonSlurper.parseText(rmsg)      
